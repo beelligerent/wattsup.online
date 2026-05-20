@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-sidebar-bg-light: #ffffff;
+  --color-sidebar-bg-dark: #0F1A2E;
+  --color-sidebar-hover-dark: #16243C;
+  --color-sidebar-active-dark: #1F3A5F;
+
+  --color-main-bg-light: #F8FAFC;
+  --color-main-bg-dark: #0B1220;
+
+  --color-card-bg-light: #ffffff;
+  --color-card-bg-dark: #111C2E;
+  --color-container-alt-dark: #141F33;
+
+  --color-table-bg-dark: #101A2B;
+  --color-table-header-dark: #162338;
+  --color-table-hover-dark: #1B2A42;
+
+  --color-text-light: #000000;
+  --color-text-dark: #E6EDF7;
+  --color-text-secondary-dark: #9FB3C8;
+  --color-text-muted-dark: #6B8099;
+
+  --color-text-muted-light: #475569;
+  --color-text-muted-dark-old: #CBD5E1; /* Keeping for reference if needed, but using muted-dark above */
+
+  --color-border-light: #E2E8F0;
+  --color-border-dark: #22324A;
+
+  --color-primary-accent: #10b981;
+  --color-secondary-accent: #FBBF24;
+
+  --color-positive: #00E396;
+  --color-negative: #FF4D6D;
+  --color-neutral: #3BA3FF;
+  --color-interactive-hover-dark: #1B2A42;
+
+  --animate-electric-pulse: electric-pulse 4s infinite;
+  --animate-scan: scan 4s infinite;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--color-main-bg-light);
+    color: var(--color-text-light);
+  }
+
+  .dark body {
+    background-color: var(--color-main-bg-dark);
+    color: var(--color-text-dark);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100/50 dark:bg-white/5 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400/50 dark:bg-white/20 rounded-full border-2 border-transparent bg-clip-padding;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-500/70 dark:bg-white/40;
+}
+
+/* React Quill Custom Styles */
+.quill-container .ql-container.ql-snow {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: #0f172a; /* Force dark text for report content */
+  background-color: white;
+}
+
+.quill-container .ql-editor {
+  padding: 0;
+  min-height: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Ensure Quill internal spans for colors/sizes work */
+.quill-container .ql-editor span {
+  font-family: inherit;
+}
+
+.quill-container .ql-toolbar.ql-snow {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f8fafc; /* Light background for toolbar */
+  position: absolute;
+  top: -42px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  border-radius: 8px 8px 0 0;
+  display: none;
+}
+
+.group.ring-2 .quill-container .ql-toolbar.ql-snow {
+  display: block;
+}
+
+/* Force dark icons for the toolbar since it's on a light background */
+.quill-container .ql-snow .ql-stroke {
+  stroke: #334155;
+}
+
+.quill-container .ql-snow .ql-fill, 
+.quill-container .ql-snow .ql-picker {
+  fill: #334155;
+  color: #334155;
+}
+
+.quill-container .ql-snow .ql-picker-options {
+  background-color: white;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #334155;
+}
+
+.quill-container .ql-snow.ql-toolbar button:hover,
+.quill-container .ql-snow .ql-toolbar button:hover,
+.quill-container .ql-snow.ql-toolbar button.ql-active,
+.quill-container .ql-snow .ql-toolbar button.ql-active,
+.quill-container .ql-snow.ql-toolbar .ql-picker-label:hover,
+.quill-container .ql-snow .ql-toolbar .ql-picker-label:hover,
+.quill-container .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+.quill-container .ql-snow .ql-toolbar .ql-picker-label.ql-active,
+.quill-container .ql-snow.ql-toolbar .ql-picker-item:hover,
+.quill-container .ql-snow .ql-toolbar .ql-picker-item:hover,
+.quill-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected,
+.quill-container .ql-snow .ql-toolbar .ql-picker-item.ql-selected {
+  color: #10b981;
+}
+
+.quill-container .ql-snow.ql-toolbar button:hover .ql-stroke,
+.quill-container .ql-snow .ql-toolbar button:hover .ql-stroke,
+.quill-container .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+.quill-container .ql-snow .ql-toolbar button.ql-active .ql-stroke,
+.quill-container .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+.quill-container .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
+.quill-container .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.quill-container .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+.quill-container .ql-snow.ql-toolbar .ql-picker-item:hover .ql-stroke,
+.quill-container .ql-snow .ql-toolbar .ql-picker-item:hover .ql-stroke,
+.quill-container .ql-snow.ql-toolbar .ql-picker-item.ql-selected .ql-stroke,
+.quill-container .ql-snow .ql-toolbar .ql-picker-item.ql-selected .ql-stroke {
+  stroke: #10b981;
+}
+
+/* Simple Prose class for report text */
+.prose {
+  line-height: 1.6;
+}
+.prose h1 { font-size: 2em; font-weight: 800; margin-bottom: 0.5em; }
+.prose h2 { font-size: 1.5em; font-weight: 700; margin-bottom: 0.5em; }
+.prose h3 { font-size: 1.25em; font-weight: 600; margin-bottom: 0.5em; }
+.prose p { margin-bottom: 1em; }
+.prose ul { list-style-type: disc; padding-left: 1.5em; margin-bottom: 1em; }
+.prose ol { list-style-type: decimal; padding-left: 1.5em; margin-bottom: 1em; }
+.prose strong { font-weight: 700; }
+.prose em { font-style: italic; }
+
+/* Logo Animations */
+@keyframes electric-pulse {
+  0%, 100% { 
+    filter: drop-shadow(0 0 0px rgba(16, 185, 129, 0));
+    opacity: 1;
+    transform: scale(1);
+  }
+  5% {
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  10% {
+    filter: drop-shadow(0 0 12px rgba(16, 185, 129, 1));
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  15% {
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  20%, 95% {
+    filter: drop-shadow(0 0 0px rgba(16, 185, 129, 0));
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scan {
+  0% { left: -100%; }
+  10%, 100% { left: 100%; }
+}

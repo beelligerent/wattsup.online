@@ -1,0 +1,56 @@
+{
+  "name": "wattsup-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "lint": "next lint"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@azure/cosmos": "^4.9.2",
+    "@azure/msal-browser": "^5.6.3",
+    "@azure/msal-react": "^5.2.1",
+    "@azure/storage-blob": "^12.31.0",
+    "@google/genai": "^1.43.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "file-saver": "^2.0.5",
+    "framer-motion": "^12.38.0",
+    "html-to-image": "^1.11.13",
+    "html2canvas": "^1.4.1",
+    "idb-keyval": "^6.2.2",
+    "jspdf": "^4.2.0",
+    "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.546.0",
+    "mermaid": "^11.13.0",
+    "motion": "^12.23.24",
+    "next": "15.3.1",
+    "papaparse": "^5.5.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "react-quill-new": "^3.8.3",
+    "recharts": "^3.7.0",
+    "tailwind-merge": "^3.5.0",
+    "xlsx": "^0.18.5",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.7",
+    "@types/node": "^22.14.0",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.8.2"
+  }
+}

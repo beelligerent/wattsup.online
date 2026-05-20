@@ -1,0 +1,43 @@
+name: Deploy WattsUp to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js app
+        run: npm run build
+        env:
+          NEXT_PUBLIC_AZURE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_AZURE_CLIENT_ID }}
+          NEXT_PUBLIC_AZURE_TENANT_ID: ${{ secrets.NEXT_PUBLIC_AZURE_TENANT_ID }}
+          NEXT_PUBLIC_AZURE_TENANT_NAME: ${{ secrets.NEXT_PUBLIC_AZURE_TENANT_NAME }}
+          NEXT_PUBLIC_AZURE_USER_FLOW: ${{ secrets.NEXT_PUBLIC_AZURE_USER_FLOW }}
+          NEXT_PUBLIC_AZURE_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_AZURE_REDIRECT_URI }}
+          NEXT_PUBLIC_AZURE_STORAGE_ACCOUNT_NAME: ${{ secrets.NEXT_PUBLIC_AZURE_STORAGE_ACCOUNT_NAME }}
+          NEXT_PUBLIC_AZURE_STORAGE_SAS_TOKEN: ${{ secrets.NEXT_PUBLIC_AZURE_STORAGE_SAS_TOKEN }}
+          NEXT_PUBLIC_AZURE_STORAGE_CONTAINER_NAME: ${{ secrets.NEXT_PUBLIC_AZURE_STORAGE_CONTAINER_NAME }}
+          NEXT_PUBLIC_GEMINI_API_KEY: ${{ secrets.NEXT_PUBLIC_GEMINI_API_KEY }}
+
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'wattsupenergy'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: .
